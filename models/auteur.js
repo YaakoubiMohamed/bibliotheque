@@ -1,10 +1,11 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
+const { sequelize } = require("../config/db");
 
-const Auteur = Sequelize.define('Auteur',{
+const Auteur = sequelize.define('Auteur',{
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoInment: true
+        autoIncrement: true
     },
     nom:{
         type: DataTypes.STRING,

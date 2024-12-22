@@ -13,7 +13,7 @@ const CreerLivre = async (req , res) => {
 
 const AfficherLivres = async (req , res) => {
     try{
-        const livres = Livre.findAll();
+        const livres = await Livre.findAll();
         res.status(200).json(livres)
     }
     catch(err){

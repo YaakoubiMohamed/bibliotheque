@@ -1,10 +1,11 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const {  DataTypes } = require("sequelize");
+const { sequelize } = require("../config/db");
 
-const Livre = Sequelize.define('Livre',{
+const Livre = sequelize.define('Livre',{
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoInment: true
+        autoIncrement: true
     },
     titre:{
         type: DataTypes.STRING,
@@ -15,6 +16,9 @@ const Livre = Sequelize.define('Livre',{
     },
     date_publication:{
         type: DataTypes.DATE
+    },
+    theme:{
+        type: DataTypes.STRING
     }
 })
 

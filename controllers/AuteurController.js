@@ -13,7 +13,7 @@ const CreerAuteur = async (req , res) => {
 
 const AfficherAuteurs = async (req , res) => {
     try{
-        const auteurs = Auteur.findAll();
+        const auteurs = await Auteur.findAll();
         res.status(200).json(auteurs)
     }
     catch(err){
@@ -24,13 +24,17 @@ const AfficherAuteurs = async (req , res) => {
 const ModifierAuteur = async (req, res) =>{
     try{
         const { id } = req.params;
+        const { nom, prenom, biographie } = req.body;
         // etape 1: recherche 
-        const auteur = Auteur.findByPk(id);
+        const auteur = await Auteur.findByPk(id);
         // etape 2: verification
-        if(auteur){
+        if(!auteur){
             return res.status(404).json({error: 'auteur non trouve'})
         }
-        await Auteur.update(req.body)
+        auteur.nom = nom;
+        auteur.prenom = prenom;
+        auteur.biographie = biographie;
+        await auteur.save()
         res.status(200).json({message:'auteur mis à jours'})
     }
     catch(err){
@@ -42,9 +46,9 @@ const SupprimerAuteur = async (req, res) =>{
     try{
         const { id } = req.params;
         // etape 1: recherche 
-        const auteur = Auteur.findByPk(id);
+        const auteur = await Auteur.findByPk(id);
         // etape 2: verification
-        if(auteur){
+        if(!auteur){
             return res.status(404).json({error: 'auteur non trouve'})
         }
         await auteur.destroy()
