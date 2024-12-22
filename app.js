@@ -22,13 +22,6 @@ app.listen(PORT, async () =>{
     await connexion();
 })
 
-// {
-//     "titre":"introduction web 2.0",
-//     "description":"formaton web",
-//     "date_publication":"2024-12-22 21:54:23",
-//     "theme":"informatique",
-//     "auteur_id":2
-//   }
 
 
 
